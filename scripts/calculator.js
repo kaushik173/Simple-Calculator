@@ -89,17 +89,26 @@ window.onerror = function () {
 function isNumber(char) {
     return /^\d$/.test(char);
   }
-
-function checkForBracketMulti() {
-    if (eval(screenValue) !== undefined) {
-      screen.value = eval(screenValue);
-      lastScreenValue = screenValue;
-      screenValue = screen.value;
-      if (parseFloat(screen.value) < 0) {
-        screen.classList.add("negative");
+  function checkForBracketMulti() {
+    try {
+      let sanitizedExpression = screenValue.replace(/X/g, "*").replace(/[^0-9+\-*/().]/g, '');
+      
+      const result = eval(sanitizedExpression);
+  
+      if (!isNaN(result)) {
+        screen.value = result;
+        lastScreenValue = screenValue;
+        screenValue = screen.value;
+        if (parseFloat(screen.value) < 0) {
+          screen.classList.add("negative");
+        } else {
+          screen.classList.remove("negative");
+        }
       } else {
-        screen.classList.remove("negative");
+        console.error("Invalid result:", result);
       }
+    } catch (error) {
+      console.error("Error during evaluation:", error);
     }
     flag = 1;
   }
