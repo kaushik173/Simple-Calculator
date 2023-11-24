@@ -3,7 +3,6 @@
     <title>Simple Calculator Kaushik Rathod</title>
     <link rel="stylesheet" href="./styles/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Fjalla+One&display=swap" rel="stylesheet">
-    <link rel='icon' type='image/x-icon' href='./images/favicon.ico' />
 </head>
 <body style="text-align: center;">
     <div class="toggle-container">
@@ -15,7 +14,7 @@
 	<div class="container">
         <h1>
             <a style="text-decoration: none; color: #f1c40f; margin-left: 1.25rem; cursor: pointer;" onclick="location.reload();">CALCULATOR</a>
-            <!-- <img id="historybutton" src="./images/history.png">	 -->
+            <img id="historybutton" src="./images/history.png" title="View History" alt="History Button">	
         </h1>
         <hr>
         <div class="calculator">
@@ -61,12 +60,20 @@
                     <td><button style="background-color: #25db72; font-weight: bold; color: #ecf0f1;">=</button></td>
                 </tr>
             </table>
+            <hr style="max-width: 50vw;">
+            <div style="font-size:1rem; display: flex; align-items: center; justify-content: center;">
+                Made with <img style="margin: 0.15rem;"> by <a style="text-decoration: none; color: #f1c40f; margin-left: 0.25rem;" target="_blank" href="">Kaushik Rathod</a>
+            </div>
         </div>
 	</div>
-   
+    <div id="bar1" class = "bars"></div>
+    <div id="bar2" class = "bars"></div>
+    <div id="history"></div>
+    
 </body>
 </html>
-
+<script src="./scripts/history.js"></script>
+<script src="./scripts/calculator.js"></script>
 <script>
     //change mode dark-mode and light-mode
 	const TOGGLEMODE = document.getElementById('toggle-mode');
@@ -76,8 +83,37 @@
 		CONTAINER.classList.toggle('dark-mode');
 	});
 
-    
     document.addEventListener('keydown', function (event) {
         handleKeyPress(event.key);
     });
+    // This function will be responsible for handling the button press from the keyboard..Try thses key also if want you can also change these settings,...
+    function handleKeyPress(key){
+        //  "Enter" key is pressed, trigger the "=" button press
+        if(key == 'Enter'){
+            handlerButtonPress('=');
+        }
+
+        // "Delete" or "Backspace" key is pressed, trigger the "CE" button press
+        if(key == 'Delete' || key == 'Backspace'){
+            handlerButtonPress('CE');
+        }
+
+        //number key is pressed, trigger the corresponding number button press
+        if(/[0-9]/.test(key)){
+            handlerButtonPress(key);
+        }
+
+        //  operator key is pressed (+, -, *, /), trigger the corresponding operator button press
+        if(/[\+\-\*\/%]/.test(key)){
+            handlerButtonPress(key);
+        }
+    }
+    function handlerButtonPress(value){
+        const BUTTON = document.querySelector(`button[value="${value}"]`);
+        if(BUTTON){
+            BUTTON.click();
+        }else {
+        console.error(`Button with value "${value}" not found.`);
+       }
+    }
 </script>
