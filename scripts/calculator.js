@@ -27,6 +27,7 @@ for(item of buttons){
             screen.classList.remove("negative"); // Remove negative class
             isSign = true;
         }else if (buttonText == "="){
+          debugger
             checkForBracketMulti();
             if(parseFloat(screen.value) < 0){
                 screen.classList.add("negative");
@@ -39,7 +40,16 @@ for(item of buttons){
             }
             screenValue += buttonText;
             screen.value = screenValue;
-        }else if( isNumber(buttonText)){
+      //   }else if (buttonText == "CE") {
+      //       if (flag == 1) {
+      //           flag = 0;
+      //        }
+      //       screenValue = screenValue.slice(0, -1);
+      //       screen.value = screenValue;
+      //       isSign = false;
+      //       screen.classList.remove("negative"); 
+      // }
+          }else if( isNumber(buttonText)){
             if (flag == 1) {
                 screenValue = buttonText;
                 flag = 0;
@@ -48,7 +58,7 @@ for(item of buttons){
               }
               screen.value = screenValue;
               isSign = false;
-              screen.classList.remove("negative"); // Remove negative class
+              screen.classList.remove("negative"); 
             } else {
               if (flag == 1) {
                 flag = 0;
@@ -58,7 +68,7 @@ for(item of buttons){
                 screen.value = screenValue;
                 isSign = true;
               }
-              screen.classList.remove("negative"); // Remove negative class
+              screen.classList.remove("negative"); 
             }
             
     })

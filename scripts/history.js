@@ -48,7 +48,7 @@ function deleteLastEntry() {
     if (calcHistory.length > 0) {
       calcHistory.pop(); 
       localStorage.setItem("calcHistory", JSON.stringify(calcHistory));
-      showHistory(); // It open each time when u click on CE if u dont want then u can remove it ....
+      showHistory(); 
     }
   }
 

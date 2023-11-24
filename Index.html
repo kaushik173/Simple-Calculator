@@ -62,7 +62,7 @@
             </table>
             <hr style="max-width: 50vw;">
             <div style="font-size:1rem; display: flex; align-items: center; justify-content: center;">
-                Made with <img style="margin: 0.15rem;"> by <a style="text-decoration: none; color: #f1c40f; margin-left: 0.25rem;" target="_blank" href="">Kaushik Rathod</a>
+                Made with <img style="margin: 0.15rem;"> by <a style="text-decoration: none; color: #f1c40f; margin-left: 0.25rem;" target="" href="">Kaushik Rathod</a>
             </div>
         </div>
 	</div>
@@ -87,27 +87,50 @@
         handleKeyPress(event.key);
     });
     // This function will be responsible for handling the button press from the keyboard..Try thses key also if want you can also change these settings,...
-    function handleKeyPress(key){
-        //  "Enter" key is pressed, trigger the "=" button press
-        if(key == 'Enter'){
+    function handleKeyPress(key) {
+    switch (key) {
+        case 'Enter':
             handlerButtonPress('=');
-        }
-
-        // "Delete" or "Backspace" key is pressed, trigger the "CE" button press
-        if(key == 'Delete' || key == 'Backspace'){
+            break;
+        case 'Delete':
+        case 'Backspace':
             handlerButtonPress('CE');
-        }
-
-        //number key is pressed, trigger the corresponding number button press
-        if(/[0-9]/.test(key)){
+            break;
+        case '+':
+        case '-':
+        case '*':
+        case '/':
+        case '%':
             handlerButtonPress(key);
-        }
-
-        //  operator key is pressed (+, -, *, /), trigger the corresponding operator button press
-        if(/[\+\-\*\/%]/.test(key)){
-            handlerButtonPress(key);
-        }
+            break;
+        default:
+            // Check if the key is a number
+            if (/^[0-9]$/.test(key)) {
+                handlerButtonPress(key);
+            }
     }
+}
+    // function handleKeyPress(key){
+    //     //  "Enter" key is pressed, trigger the "=" button press
+    //     if(key == 'Enter'){
+    //         handlerButtonPress('=');
+    //     }
+
+    //     // "Delete" or "Backspace" key is pressed, trigger the "CE" button press
+    //     if(key == 'Delete' || key == 'Backspace'){
+    //         handlerButtonPress('CE');
+    //     }
+
+    //     //number key is pressed, trigger the corresponding number button press
+    //     if(/[0-9]/.test(key)){
+    //         handlerButtonPress(key);
+    //     }
+
+    //     //  operator key is pressed (+, -, *, /), trigger the corresponding operator button press
+    //     if(/[\+\-\*\/%]/.test(key)){
+    //         handlerButtonPress(key);
+    //     }
+    // }
     function handlerButtonPress(value){
         const BUTTON = document.querySelector(`button[value="${value}"]`);
         if(BUTTON){
