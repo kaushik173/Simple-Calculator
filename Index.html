@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<head>
+    <title>Simple Calculator Kaushik Rathod</title>
+    <link rel="stylesheet" href="./styles/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link rel='icon' type='image/x-icon' href='./images/favicon.ico' />
+</head>
+<body style="text-align: center;">
+    <div class="toggle-container">
+        <label class="toggle-switch">
+            <input type="checkbox" id="toggle-mode" />
+            <span class="toggle-slider"></span>
+        </label>
+    </div>
+	<div class="container">
+        <h1>
+            <a style="text-decoration: none; color: #f1c40f; margin-left: 1.25rem; cursor: pointer;" onclick="location.reload();">CALCULATOR</a>
+            <!-- <img id="historybutton" src="./images/history.png">	 -->
+        </h1>
+        <hr>
+        <div class="calculator">
+            <input type="text" name="screen" id="answer" readonly>
+            <table align="center">
+                <tr>
+                    <td><button>(</button></td>
+                    <td><button>)</button></td>
+                    <td>
+                        <div class="row">
+                            <div class="col">
+                                <button style="background-color: #f01600; font-weight: bold; color: #ecf0f1; width: 8vw;" onclick="clearAll()">C</button>
+                            </div>
+                            <div class="col">
+                                <button style="background-color: #f01600; font-weight: bold; color: #ecf0f1;width: 8vw;" onclick="deleteLastEntry()">CE</button>
+                            </div>
+                        </div>
+                    </td>
+                    <td><button>%</button></td>
+                </tr>
+                <tr>
+                    <td><button>7</button></td>
+                    <td><button>8</button></td>
+                    <td><button>9</button></td>
+                    <td><button>X</button></td>
+                </tr>
+                <tr>
+                    <td><button>4</button></td>
+                    <td><button>5</button></td>
+                    <td><button>6</button></td>
+                    <td><button>-</button></td>
+                </tr>
+                <tr>
+                    <td><button>1</button></td>
+                    <td><button>2</button></td>
+                    <td><button>3</button></td>
+                    <td><button>+</button></td>
+                </tr>
+                <tr>
+                    <td><button>0</button></td>
+                    <td><button style="font-weight: bold;">.</button></td>
+                    <td><button>/</button></td>
+                    <td><button style="background-color: #25db72; font-weight: bold; color: #ecf0f1;">=</button></td>
+                </tr>
+            </table>
+        </div>
+	</div>
+   
+</body>
+</html>
+
+<script>
+    //change mode dark-mode and light-mode
+	const TOGGLEMODE = document.getElementById('toggle-mode');
+	const CONTAINER = document.querySelector('.container');
+
+	TOGGLEMODE.addEventListener('change', function() {
+		CONTAINER.classList.toggle('dark-mode');
+	});
+
+    
+    document.addEventListener('keydown', function (event) {
+        handleKeyPress(event.key);
+    });
+</script>
